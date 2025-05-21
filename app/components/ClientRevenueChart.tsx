@@ -1,5 +1,5 @@
 "use client";
-import { BarChart, Bar } from "recharts";
+import { BarChart, Bar, ResponsiveContainer } from "recharts";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 
 export function ClientRevenueChart({ className }: { className?: string }) {
@@ -16,15 +16,17 @@ export function ClientRevenueChart({ className }: { className?: string }) {
       config={{
         revenue: {
           label: "Ingresos",
-          color: "hsl(var(--chart-1))",
+          color: "var(--brand-orange)",
         },
       }}
       className={className}
     >
-      <BarChart data={data} layout="vertical" margin={{ top: 5, right: 5, bottom: 5, left: 5 }}>
-        <ChartTooltip content={<ChartTooltipContent />} />
-        <Bar dataKey="revenue" fill="#F97316" radius={[4, 4, 4, 4]} />
-      </BarChart>
+      <ResponsiveContainer width="100%" height="100%">
+        <BarChart data={data} layout="vertical" margin={{ top: 5, right: 5, bottom: 5, left: 5 }}>
+          <ChartTooltip content={<ChartTooltipContent />} />
+          <Bar dataKey="revenue" fill="var(--brand-orange)" radius={[4, 4, 4, 4]} />
+        </BarChart>
+      </ResponsiveContainer>
     </ChartContainer>
   );
 }

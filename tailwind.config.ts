@@ -57,6 +57,14 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        // Brand colors
+        'brand-orange': '#F97316',
+        'brand-blue': '#1C3E72',
+        'brand-green': '#28C76F',
+        'brand-red': '#EA5455',
+      },
+      fontFamily: {
+        sans: ['Inter', 'ui-sans-serif', 'system-ui'],
       },
       borderRadius: {
         lg: "var(--radius)",

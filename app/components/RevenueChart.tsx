@@ -1,5 +1,5 @@
 "use client";
-import { LineChart, Line } from "recharts";
+import { LineChart, Line, ResponsiveContainer } from "recharts";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 
 export function RevenueChart({ className }: { className?: string }) {
@@ -18,15 +18,17 @@ export function RevenueChart({ className }: { className?: string }) {
       config={{
         revenue: {
           label: "Ingresos",
-          color: "hsl(var(--chart-1))",
+          color: "var(--brand-orange)",
         },
       }}
       className={className}
     >
-      <LineChart data={data} margin={{ top: 5, right: 5, bottom: 5, left: 5 }}>
-        <ChartTooltip content={<ChartTooltipContent />} />
-        <Line type="monotone" dataKey="revenue" stroke="#1C3E72" strokeWidth={2} dot={false} />
-      </LineChart>
+      <ResponsiveContainer width="100%" height="100%">
+        <LineChart data={data} margin={{ top: 5, right: 5, bottom: 5, left: 5 }}>
+          <ChartTooltip content={<ChartTooltipContent />} />
+          <Line type="monotone" dataKey="revenue" stroke="var(--brand-orange)" strokeWidth={2} dot={false} />
+        </LineChart>
+      </ResponsiveContainer>
     </ChartContainer>
   );
 }

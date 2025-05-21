@@ -1,5 +1,5 @@
 "use client";
-import { BarChart, Bar } from "recharts";
+import { BarChart, Bar, ResponsiveContainer } from "recharts";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 
 export function MonthlyRevenueChart({ className }: { className?: string }) {
@@ -17,15 +17,17 @@ export function MonthlyRevenueChart({ className }: { className?: string }) {
       config={{
         revenue: {
           label: "Ingresos",
-          color: "#1C3E72",
+          color: "var(--brand-orange)",
         },
       }}
       className={className}
     >
-      <BarChart data={data} margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
-        <ChartTooltip content={<ChartTooltipContent />} />
-        <Bar dataKey="revenue" fill="#1C3E72" radius={[4, 4, 0, 0]} />
-      </BarChart>
+      <ResponsiveContainer width="100%" height="100%">
+        <BarChart data={data} margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
+          <ChartTooltip content={<ChartTooltipContent />} />
+          <Bar dataKey="revenue" fill="var(--brand-orange)" radius={[4, 4, 0, 0]} />
+        </BarChart>
+      </ResponsiveContainer>
     </ChartContainer>
   );
 }

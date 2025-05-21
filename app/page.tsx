@@ -12,19 +12,19 @@ import { MonthlyRevenueChart } from "./components/MonthlyRevenueChart";
 
 export default function Dashboard() {
   return (
-    <div className="flex min-h-screen flex-col bg-[#F3F4F6]">
+    <div className="flex min-h-screen flex-col bg-[hsl(var(--background))]">
       <Navbar />
       <main className="flex-1 p-6 md:p-8">
         <div className="mx-auto max-w-7xl space-y-6">
           <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
-            <h1 className="text-2xl font-bold text-[#1C3E72] md:text-3xl">Dashboard</h1>
-            <Button className="bg-[#F97316] hover:bg-[#F97316]/90">
+            <h1 className="text-2xl font-bold text-brand-blue md:text-3xl">Dashboard</h1>
+            <Button className="bg-brand-orange hover:bg-brand-orange/90">
               <Plus className="mr-2 h-4 w-4" />
               Nueva factura
             </Button>
           </div>
 
-          <Card className="border-none bg-[#1C3E72] text-white shadow-md">
+          <Card className="border-none bg-brand-blue text-white shadow-md">
             <CardContent className="p-6">
               <div className="flex flex-col gap-2">
                 <h2 className="text-xl font-semibold">¡Buen trabajo, Erick! 🚀</h2>
@@ -41,11 +41,13 @@ export default function Dashboard() {
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">$125,400</div>
-                <div className="text-xs text-[#28C76F] flex items-center mt-1">
+                <div className="text-xs text-brand-green flex items-center mt-1">
                   <ArrowUpRight className="mr-1 h-3 w-3" />
                   12% vs mes anterior
                 </div>
-                <RevenueChart className="mt-4 h-[80px]" />
+                <div className="mt-4 h-20 md:h-[80px]">
+                  <RevenueChart className="w-full h-full" />
+                </div>
               </CardContent>
             </Card>
 
@@ -56,16 +58,16 @@ export default function Dashboard() {
               <CardContent>
                 <div className="text-2xl font-bold">32 facturas</div>
                 <div className="mt-4 grid grid-cols-3 gap-2 text-center text-xs">
-                  <div className="rounded-md bg-[#28C76F]/10 p-2">
-                    <div className="font-medium text-[#28C76F]">24</div>
+                  <div className="rounded-md bg-brand-green/10 p-2">
+                    <div className="font-medium text-brand-green">24</div>
                     <div className="text-muted-foreground">Pagadas</div>
                   </div>
-                  <div className="rounded-md bg-[#F97316]/10 p-2">
-                    <div className="font-medium text-[#F97316]">5</div>
+                  <div className="rounded-md bg-brand-orange/10 p-2">
+                    <div className="font-medium text-brand-orange">5</div>
                     <div className="text-muted-foreground">Pendientes</div>
                   </div>
-                  <div className="rounded-md bg-[#EA5455]/10 p-2">
-                    <div className="font-medium text-[#EA5455]">3</div>
+                  <div className="rounded-md bg-brand-red/10 p-2">
+                    <div className="font-medium text-brand-red">3</div>
                     <div className="text-muted-foreground">Vencidas</div>
                   </div>
                 </div>
@@ -78,7 +80,9 @@ export default function Dashboard() {
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">8 clientes</div>
-                <ClientRevenueChart className="mt-4 h-[80px]" />
+                <div className="mt-4 h-20 md:h-[80px]">
+                  <ClientRevenueChart className="w-full h-full" />
+                </div>
               </CardContent>
             </Card>
 
@@ -90,7 +94,7 @@ export default function Dashboard() {
                 <div className="text-2xl font-bold">75% completado</div>
                 <div className="text-xs text-muted-foreground mt-1">Objetivo mensual: $33,600</div>
                 <div className="mt-4">
-                  <Progress value={75} className="h-2 bg-[#F3F4F6]" />
+                  <Progress value={75} className="h-2 bg-brand-orange" />
                   <div className="mt-1 text-right text-xs text-muted-foreground">$25,200 / $33,600</div>
                 </div>
               </CardContent>
@@ -104,7 +108,9 @@ export default function Dashboard() {
                 <CardDescription>Comparativa de ingresos de los últimos 6 meses</CardDescription>
               </CardHeader>
               <CardContent>
-                <MonthlyRevenueChart className="h-[300px]" />
+                <div className="h-60 md:h-[300px] w-full">
+                  <MonthlyRevenueChart className="w-full h-full" />
+                </div>
               </CardContent>
             </Card>
 
@@ -153,11 +159,11 @@ const recentInvoices = [
 function getStatusColor(status: string) {
   switch (status) {
     case "Pagada":
-      return "bg-[#28C76F]/10 text-[#28C76F]";
+      return "bg-brand-green/10 text-brand-green";
     case "Pendiente":
-      return "bg-[#F97316]/10 text-[#F97316]";
+      return "bg-brand-orange/10 text-brand-orange";
     case "Vencida":
-      return "bg-[#EA5455]/10 text-[#EA5455]";
+      return "bg-brand-red/10 text-brand-red";
     default:
       return "bg-gray-100 text-gray-500";
   }
@@ -166,11 +172,11 @@ function getStatusColor(status: string) {
 function getStatusTextColor(status: string) {
   switch (status) {
     case "Pagada":
-      return "text-[#28C76F]";
+      return "text-brand-green";
     case "Pendiente":
-      return "text-[#F97316]";
+      return "text-brand-orange";
     case "Vencida":
-      return "text-[#EA5455]";
+      return "text-brand-red";
     default:
       return "text-gray-500";
   }
