@@ -1,11 +1,14 @@
-import { BarChart, LineChart } from "recharts"
-import { ArrowUpRight, Plus } from "lucide-react"
+import { BarChart, LineChart, Line, Bar } from "recharts";
+import { ArrowUpRight, Plus } from "lucide-react";
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Progress } from "@/components/ui/progress"
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
-import { Navbar } from "@/components/navbar"
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Progress } from "@/components/ui/progress";
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
+import { Navbar } from "@/components/navbar";
+import { RevenueChart } from "./components/RevenueChart";
+import { ClientRevenueChart } from "./components/ClientRevenueChart";
+import { MonthlyRevenueChart } from "./components/MonthlyRevenueChart";
 
 export default function Dashboard() {
   return (
@@ -87,7 +90,7 @@ export default function Dashboard() {
                 <div className="text-2xl font-bold">75% completado</div>
                 <div className="text-xs text-muted-foreground mt-1">Objetivo mensual: $33,600</div>
                 <div className="mt-4">
-                  <Progress value={75} className="h-2 bg-[#F3F4F6]" indicatorClassName="bg-[#28C76F]" />
+                  <Progress value={75} className="h-2 bg-[#F3F4F6]" />
                   <div className="mt-1 text-right text-xs text-muted-foreground">$25,200 / $33,600</div>
                 </div>
               </CardContent>
@@ -115,11 +118,7 @@ export default function Dashboard() {
                   {recentInvoices.map((invoice) => (
                     <div key={invoice.id} className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
-                        <div
-                          className={`h-10 w-10 rounded-full flex items-center justify-center ${getStatusColor(invoice.status)}`}
-                        >
-                          {getStatusIcon(invoice.status)}
-                        </div>
+                        <div className={`h-10 w-10 rounded-full flex items-center justify-center ${getStatusColor(invoice.status)}`}>{getStatusIcon(invoice.status)}</div>
                         <div>
                           <div className="font-medium">{invoice.client}</div>
                           <div className="text-xs text-muted-foreground">
@@ -140,91 +139,7 @@ export default function Dashboard() {
         </div>
       </main>
     </div>
-  )
-}
-
-function RevenueChart({ className }: { className?: string }) {
-  const data = [
-    { month: "Ene", revenue: 65000 },
-    { month: "Feb", revenue: 78000 },
-    { month: "Mar", revenue: 72000 },
-    { month: "Abr", revenue: 85000 },
-    { month: "May", revenue: 92000 },
-    { month: "Jun", revenue: 102000 },
-    { month: "Jul", revenue: 125400 },
-  ]
-
-  return (
-    <ChartContainer
-      config={{
-        revenue: {
-          label: "Ingresos",
-          color: "hsl(var(--chart-1))",
-        },
-      }}
-      className={className}
-    >
-      <LineChart data={data} margin={{ top: 5, right: 5, bottom: 5, left: 5 }}>
-        <ChartTooltip content={<ChartTooltipContent />} />
-        <LineChart.Line type="monotone" dataKey="revenue" stroke="#1C3E72" strokeWidth={2} dot={false} />
-      </LineChart>
-    </ChartContainer>
-  )
-}
-
-function ClientRevenueChart({ className }: { className?: string }) {
-  const data = [
-    { name: "Empresa A", revenue: 42000 },
-    { name: "Empresa B", revenue: 28000 },
-    { name: "Empresa C", revenue: 18000 },
-    { name: "Empresa D", revenue: 15000 },
-    { name: "Otros", revenue: 22400 },
-  ]
-
-  return (
-    <ChartContainer
-      config={{
-        revenue: {
-          label: "Ingresos",
-          color: "hsl(var(--chart-1))",
-        },
-      }}
-      className={className}
-    >
-      <BarChart data={data} layout="vertical" margin={{ top: 5, right: 5, bottom: 5, left: 5 }}>
-        <ChartTooltip content={<ChartTooltipContent />} />
-        <BarChart.Bar dataKey="revenue" fill="#F97316" radius={[4, 4, 4, 4]} />
-      </BarChart>
-    </ChartContainer>
-  )
-}
-
-function MonthlyRevenueChart({ className }: { className?: string }) {
-  const data = [
-    { month: "Febrero", revenue: 78000 },
-    { month: "Marzo", revenue: 72000 },
-    { month: "Abril", revenue: 85000 },
-    { month: "Mayo", revenue: 92000 },
-    { month: "Junio", revenue: 102000 },
-    { month: "Julio", revenue: 125400 },
-  ]
-
-  return (
-    <ChartContainer
-      config={{
-        revenue: {
-          label: "Ingresos",
-          color: "#1C3E72",
-        },
-      }}
-      className={className}
-    >
-      <BarChart data={data} margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
-        <ChartTooltip content={<ChartTooltipContent />} />
-        <BarChart.Bar dataKey="revenue" fill="#1C3E72" radius={[4, 4, 0, 0]} />
-      </BarChart>
-    </ChartContainer>
-  )
+  );
 }
 
 const recentInvoices = [
@@ -233,43 +148,43 @@ const recentInvoices = [
   { id: "INV-2023-076", client: "Soluciones Digitales", amount: 4500, date: "18 Jul 2023", status: "Pagada" },
   { id: "INV-2023-075", client: "Consultora Avanza", amount: 2800, date: "15 Jul 2023", status: "Vencida" },
   { id: "INV-2023-074", client: "Tecnología Futuro", amount: 6200, date: "10 Jul 2023", status: "Pagada" },
-]
+];
 
 function getStatusColor(status: string) {
   switch (status) {
     case "Pagada":
-      return "bg-[#28C76F]/10 text-[#28C76F]"
+      return "bg-[#28C76F]/10 text-[#28C76F]";
     case "Pendiente":
-      return "bg-[#F97316]/10 text-[#F97316]"
+      return "bg-[#F97316]/10 text-[#F97316]";
     case "Vencida":
-      return "bg-[#EA5455]/10 text-[#EA5455]"
+      return "bg-[#EA5455]/10 text-[#EA5455]";
     default:
-      return "bg-gray-100 text-gray-500"
+      return "bg-gray-100 text-gray-500";
   }
 }
 
 function getStatusTextColor(status: string) {
   switch (status) {
     case "Pagada":
-      return "text-[#28C76F]"
+      return "text-[#28C76F]";
     case "Pendiente":
-      return "text-[#F97316]"
+      return "text-[#F97316]";
     case "Vencida":
-      return "text-[#EA5455]"
+      return "text-[#EA5455]";
     default:
-      return "text-gray-500"
+      return "text-gray-500";
   }
 }
 
 function getStatusIcon(status: string) {
   switch (status) {
     case "Pagada":
-      return <span>✓</span>
+      return <span>✓</span>;
     case "Pendiente":
-      return <span>⏱</span>
+      return <span>⏱</span>;
     case "Vencida":
-      return <span>!</span>
+      return <span>!</span>;
     default:
-      return <span>•</span>
+      return <span>•</span>;
   }
 }
