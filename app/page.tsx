@@ -1,14 +1,17 @@
-import { BarChart, LineChart, Line, Bar } from "recharts";
 import { ArrowUpRight, Plus } from "lucide-react";
+import { Metadata } from "next";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import { Navbar } from "@/components/navbar";
 import { RevenueChart } from "./components/RevenueChart";
 import { ClientRevenueChart } from "./components/ClientRevenueChart";
 import { MonthlyRevenueChart } from "./components/MonthlyRevenueChart";
+
+export const metadata: Metadata = {
+  title: "Dashboard",
+};
 
 export default function Dashboard() {
   return (

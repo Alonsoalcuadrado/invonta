@@ -1,37 +1,24 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { ChevronDown, Search, User, BarChart3, BookOpen, LifeBuoy, Puzzle, Settings } from "lucide-react"
+import { useState } from "react";
+import Link from "next/link";
+import { ChevronDown, Search, User, BarChart3, BookOpen, LifeBuoy, Puzzle, Settings } from "lucide-react";
 
-import { Button } from "@/components/ui/button"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu"
-import { Sheet, SheetContent } from "@/components/ui/sheet"
+import { Button } from "@/components/ui/button";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
+import { Sheet, SheetContent } from "@/components/ui/sheet";
 
 export function Navbar() {
-  const [isSearchOpen, setIsSearchOpen] = useState(false)
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/40 bg-white shadow-sm">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:px-6">
         <div className="flex items-center gap-6">
           <Link href="/" className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-md bg-[#1C3E72]">
-              <span className="text-lg font-bold text-white">I</span>
+            <div className="flex h-8 w-8 items-center justify-center">
+              <img src="/images/logos/InvontaLogo.png" alt="Invonta Logo" className="h-full w-full object-contain" />
             </div>
             <span className="text-xl font-bold text-[#1C3E72]">Invonta</span>
           </Link>
@@ -73,10 +60,7 @@ export function Navbar() {
                 <NavigationMenuContent>
                   <div className="w-[280px] overflow-hidden rounded-xl border border-border/30 bg-white p-3 shadow-lg animate-in fade-in-80 data-[side=bottom]:slide-in-from-top-2">
                     <div className="grid gap-2">
-                      <Link
-                        href="/reportes"
-                        className="group flex items-center gap-3 rounded-lg p-3 text-[#1C3E72] transition-colors hover:bg-[#F3F4F6] hover:text-[#F97316]"
-                      >
+                      <Link href="/reportes" className="group flex items-center gap-3 rounded-lg p-3 text-[#1C3E72] transition-colors hover:bg-[#F3F4F6] hover:text-[#F97316]">
                         <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#28C76F]/10">
                           <BarChart3 className="h-5 w-5 text-[#28C76F]" />
                         </div>
@@ -85,10 +69,7 @@ export function Navbar() {
                           <div className="text-xs text-muted-foreground">Análisis y estadísticas</div>
                         </div>
                       </Link>
-                      <Link
-                        href="/configuracion"
-                        className="group flex items-center gap-3 rounded-lg p-3 text-[#1C3E72] transition-colors hover:bg-[#F3F4F6] hover:text-[#F97316]"
-                      >
+                      <Link href="/configuracion" className="group flex items-center gap-3 rounded-lg p-3 text-[#1C3E72] transition-colors hover:bg-[#F3F4F6] hover:text-[#F97316]">
                         <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#F97316]/10">
                           <Settings className="h-5 w-5 text-[#F97316]" />
                         </div>
@@ -97,10 +78,7 @@ export function Navbar() {
                           <div className="text-xs text-muted-foreground">Personaliza tu cuenta</div>
                         </div>
                       </Link>
-                      <Link
-                        href="/integraciones"
-                        className="group flex items-center gap-3 rounded-lg p-3 text-[#1C3E72] transition-colors hover:bg-[#F3F4F6] hover:text-[#F97316]"
-                      >
+                      <Link href="/integraciones" className="group flex items-center gap-3 rounded-lg p-3 text-[#1C3E72] transition-colors hover:bg-[#F3F4F6] hover:text-[#F97316]">
                         <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#7367F0]/10">
                           <Puzzle className="h-5 w-5 text-[#7367F0]" />
                         </div>
@@ -121,10 +99,7 @@ export function Navbar() {
                           <div className="text-xs text-muted-foreground">Términos y definiciones</div>
                         </div>
                       </Link>
-                      <Link
-                        href="/soporte"
-                        className="group flex items-center gap-3 rounded-lg p-3 text-[#1C3E72] transition-colors hover:bg-[#F3F4F6] hover:text-[#F97316]"
-                      >
+                      <Link href="/soporte" className="group flex items-center gap-3 rounded-lg p-3 text-[#1C3E72] transition-colors hover:bg-[#F3F4F6] hover:text-[#F97316]">
                         <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#EA5455]/10">
                           <LifeBuoy className="h-5 w-5 text-[#EA5455]" />
                         </div>
@@ -181,5 +156,5 @@ export function Navbar() {
         </div>
       </div>
     </header>
-  )
+  );
 }
